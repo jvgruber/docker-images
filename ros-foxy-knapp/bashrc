@@ -1,0 +1,5 @@
+source /opt/ros/foxy/setup.bash
+source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash
+export ROS_DOMAIN_ID=0
+export ROS_LOCALHOST_ONLY=1
+source /vol/dev_ws/install/setup.bash

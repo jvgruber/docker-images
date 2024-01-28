@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# for graphics you need to give permissions if the user is not the same as current:
+# "xhost +", "xhost +local:", "xhost +local:root" for permitting
+# "xhost -local:root" for revoking these permissions
+# After that you need to expose the x-domain socket: "-v /tmp/.X11-unix:/tmp/.X11-unix:rw"
+# Also we define to use the display that the host is using: "--env=DISPLAY"
+
+docker run -it --user ros --network=host --ipc=host --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" --volume="/usr/share/fonts:/usr/share/fonts:ro" --env=DISPLAY --volume="$PWD/volume:/vol" ros-iron-rita:latest
