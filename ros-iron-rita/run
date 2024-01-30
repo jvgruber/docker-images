@@ -6,4 +6,4 @@
 # After that you need to expose the x-domain socket: "-v /tmp/.X11-unix:/tmp/.X11-unix:rw"
 # Also we define to use the display that the host is using: "--env=DISPLAY"
 
-docker run -it --user ros --network=host --ipc=host --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" --volume="/usr/share/fonts:/usr/share/fonts:ro" --env=DISPLAY --volume="$PWD/volume:/vol" ros-iron-rita:latest
+docker run -it --user ros --network=host --ipc=host --volume="/dev/input:/dev/input" --device-cgroup-rule='c 13:* rmw' --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" --volume="/usr/share/fonts:/usr/share/fonts:ro" --env=DISPLAY --volume="$PWD/volume:/vol" ros-iron-rita:latest

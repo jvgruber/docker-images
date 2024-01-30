@@ -2,20 +2,34 @@ FROM osrf/ros:iron-desktop-full-jammy
 
 ENV DEBIAN_FRONTEND=noninteractive
 
+# General programs
 RUN apt-get update \
   && apt-get install -y \
   curl \
   fluid \
   git \
   nano \
-  ros-iron-rqt* \
+  terminator \
+  wget \
+  && rm -rf /var/lib/apt/lists/*
+
+# ROS-specific programs
+RUN apt-get update \
+  && apt-get install -y \
   python3-argcomplete \
   python3-colcon-common-extensions \
+  ros-iron-rqt* \
   ros-dev-tools \
   ros-iron-joint-state-publisher \
   ros-iron-xacro \
-  terminator \
-  wget \
+  && rm -rf /var/lib/apt/lists/*
+
+# Programs for using devices
+RUN apt-get update \
+  && apt-get install -y \
+  # evtest \
+  jstest-gtk \
+  # python3-serial \
   && rm -rf /var/lib/apt/lists/*
 
 ARG USERNAME=ros
