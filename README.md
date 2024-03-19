@@ -3,11 +3,17 @@ This is a collection of easy to use docker images I use for my personal projects
 
 ## How to use:
 1. download the folder with the docker image you want to run
+
 2. Inside the `volume` folder create a workspace directory `dev_ws`[^1]
+
 3. Build your image by executing the `build` script
+
 4. Run a container by executing the `run` script
+
 5. Place your files inside the workspace folder or build a new one (e.g. with `colcon build --symlink-install`)
 
 You're ready to go!
 
 [^1] for the `ros-noetic-tug` image please use `catkin_ws` instead.
+
+6. With the "Dev Containers" extension for VS Code you can start and stop your container and and the VS Code installation on your host as if it was installed inside the container :wink:

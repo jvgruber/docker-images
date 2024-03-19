@@ -26,3 +26,5 @@ catkin config -DCMAKE_BUILD_TYPE=Release
 5. Setup the AR Repo as described in the setup_guide.pdf.
 > **NOTE:** `rosdep install --from-paths src --ignore-src -r -y`
 and `sudo bash install` probably needs to be rerun every time you run a new container! So better start and stop the same container.
+
+6. With the "Dev Containers" extension for VS Code you can start and stop your container and and the VS Code installation on your host as if it was installed inside the container :wink:
