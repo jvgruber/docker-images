@@ -3,10 +3,10 @@ This is a collection of easy to use docker images I use for my personal projects
 
 ## How to use:
 1. download the folder with the docker image you want to run
-2. inside the folder create a directory `volume/dev_ws`[^1]
-3. Place your ros workspace inside or build a new one (e.g. with `colcon build --symlink-install`)
-4. Build your image by executing the `build` script
-5. Run a container by executing the `run` script
+2. Inside the `volume` folder create a workspace directory `dev_ws`[^1]
+3. Build your image by executing the `build` script
+4. Run a container by executing the `run` script
+5. Place your files inside the workspace folder or build a new one (e.g. with `colcon build --symlink-install`)
 
 You're ready to go!
 
