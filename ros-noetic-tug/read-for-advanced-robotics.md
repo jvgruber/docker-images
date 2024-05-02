@@ -16,6 +16,8 @@ mkdir -p catkin_ws/src
 
 4. Create, build and source the workspace:
 ```bash
+apt-get update
+rosdep update
 cd /vol/catkin_ws
 catkin init
 catkin_make
@@ -23,7 +25,7 @@ source devel/setup.bash
 catkin config -DCMAKE_BUILD_TYPE=Release
 ```
 
-5. Setup the AR Repo as described in the setup_guide.pdf. **Make sure to `sudo apt-get update` and `rosdep update` before!**
+5. Setup the AR Repo as described in the setup_guide.pdf. **Make sure to have run `apt-get update` and `rosdep update` before!**
 
 > **NOTE:** `rosdep install --from-paths src --ignore-src -r -y`
 and `sudo bash install` probably needs to be rerun every time you run a new container! So better start and stop the same container.
