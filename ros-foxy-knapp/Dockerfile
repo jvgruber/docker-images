@@ -2,32 +2,33 @@ FROM osrf/ros:foxy-desktop
 
 ENV DEBIAN_FRONTEND=noninteractive
 
+# General programs
 RUN apt-get update \
   && apt-get install -y \
   curl \
   fluid \
   git \
   nano \
-  ~nros-foxy-rqt* \
-  python3-argcomplete \
-  python3-colcon-common-extensions \
-  ros-dev-tools \
-  sudo \
   terminator \
   wget \
   && rm -rf /var/lib/apt/lists/*
 
-# RUN sh -c 'echo "deb http://packages.ros.org/ros/ubuntu `lsb_release -sc` main" \
-#   > /etc/apt/sources.list.d/ros-latest.list' \
-#   && wget http://packages.ros.org/ros.key -O - | sudo apt-key add - \
-#   && apt-get update \
-#   && apt-get install -y \
-#   python3-catkin-tools \
-#   && rm -rf /var/lib/apt/lists/*
+# ROS-specific programs
+RUN apt-get update \
+  && apt-get install -y \
+  python3-argcomplete \
+  python3-colcon-common-extensions \
+  ros-foxy-rqt* \
+  ros-dev-tools \
+  ros-foxy-rcl-yaml-param-parser \
+  && rm -rf /var/lib/apt/lists/*
 
+# Programs for using devices
 # RUN apt-get update \
 #   && apt-get install -y \
-#   ros-dev-tools \
+#   evtest \
+#   jstest-gtk \
+#   python3-serial \
 #   && rm -rf /var/lib/apt/lists/*
 
 ARG USERNAME=ros
@@ -40,17 +41,21 @@ RUN groupadd --gid ${USER_GID} ${USERNAME} \
   && mkdir /home/${USERNAME}/.config \
   && chown ${USER_UID}:${USER_GID} /home/${USERNAME}/.config
 
-USER ${USERNAME}
+# USER ${USERNAME}
 # everything here will be run as the ros user!
 
-USER root
+# USER root
 # everything here will be run as root!
 # note that the last user will be opened upon startup
 # Best Practice: end the dockerfile with root as user and select at the run command from which user you want to run the container
 # docker run -it --user ros ...
 
-RUN echo ${USERNAME} ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/${USERNAME} \
-  && chmod 0040 /etc/sudoers.d/${USERNAME}
+# Set up sudo
+RUN apt-get update \
+  && apt-get install -y sudo \
+  && echo ${USERNAME} ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/${USERNAME} \
+  && chmod 0040 /etc/sudoers.d/${USERNAME} \
+  && rm -rf /var/lib/apt/lists/*
 
 COPY bashrc /home/${USERNAME}/.bashrc
 
