@@ -23,7 +23,8 @@ source devel/setup.bash
 catkin config -DCMAKE_BUILD_TYPE=Release
 ```
 
-5. Setup the AR Repo as described in the setup_guide.pdf.
+5. Setup the AR Repo as described in the setup_guide.pdf. **Make sure to `sudo apt-get update` and `rosdep update` before!**
+
 > **NOTE:** `rosdep install --from-paths src --ignore-src -r -y`
 and `sudo bash install` probably needs to be rerun every time you run a new container! So better start and stop the same container.
 
